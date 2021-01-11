@@ -16,6 +16,8 @@ struct DietModal: View {
     
     @State var selectedType: DietType? = nil
     
+    @State var showAlert = false
+    
     
     // MARK: - Body
     
@@ -56,7 +58,7 @@ struct DietModal: View {
                     
                     // MARK: - Decide Button
                     Button(action: {
-                        dismissModal()
+                        validate()
                     }, label: {
                         Text("決定")
                             .foregroundColor(.white)
@@ -86,6 +88,14 @@ struct DietModal: View {
                 
             } //: ZStack
             
+            
+            
+            
+            // MARK: - Alert
+            if showAlert {
+                ValidationAlertView(showAlert: $showAlert, message: "ごはんの種類をしてください")
+            }
+            
         } //: ZStack
         .opacity(shouldDismissModal ? 0 : 1)
     }
@@ -101,6 +111,18 @@ struct DietModal: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             showDietModal = false
         }
+    }
+    
+    
+    func validate() {
+        guard selectedType != nil else {
+            return
+                withAnimation(.spring()) {
+                    showAlert = true
+                }
+        }
+        
+        dismissModal()
     }
 }
 

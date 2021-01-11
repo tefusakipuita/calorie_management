@@ -37,6 +37,7 @@
 		EE89AED425AB901100209DE2 /* BodyInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE89AED325AB901100209DE2 /* BodyInfoInputView.swift */; };
 		EE89AED725ABB90200209DE2 /* SexSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE89AED625ABB90200209DE2 /* SexSelectRow.swift */; };
 		EE89AEDA25ABC0A100209DE2 /* ActionSelectRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE89AED925ABC0A100209DE2 /* ActionSelectRow.swift */; };
+		EE89AF0025AC854800209DE2 /* ValidationAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE89AEFF25AC854800209DE2 /* ValidationAlertView.swift */; };
 		EEE6A7A9259F1FA30052B3AE /* Calory_Management_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A7A8259F1FA30052B3AE /* Calory_Management_AppApp.swift */; };
 		EEE6A7AB259F1FA30052B3AE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE6A7AA259F1FA30052B3AE /* MainView.swift */; };
 		EEE6A7AD259F1FA40052B3AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEE6A7AC259F1FA40052B3AE /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		EE89AED325AB901100209DE2 /* BodyInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyInfoInputView.swift; sourceTree = "<group>"; };
 		EE89AED625ABB90200209DE2 /* SexSelectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SexSelectRow.swift; sourceTree = "<group>"; };
 		EE89AED925ABC0A100209DE2 /* ActionSelectRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSelectRow.swift; sourceTree = "<group>"; };
+		EE89AEFF25AC854800209DE2 /* ValidationAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationAlertView.swift; sourceTree = "<group>"; };
 		EEE6A7A5259F1FA30052B3AE /* Calory Management App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calory Management App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEE6A7A8259F1FA30052B3AE /* Calory_Management_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calory_Management_AppApp.swift; sourceTree = "<group>"; };
 		EEE6A7AA259F1FA30052B3AE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,14 @@
 			path = CalculateModal;
 			sourceTree = "<group>";
 		};
+		EE89AEFE25AC853500209DE2 /* All */ = {
+			isa = PBXGroup;
+			children = (
+				EE89AEFF25AC854800209DE2 /* ValidationAlertView.swift */,
+			);
+			path = All;
+			sourceTree = "<group>";
+		};
 		EEE6A79C259F1FA30052B3AE = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +258,7 @@
 		EEE6A7BA259F1FB50052B3AE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE89AEFE25AC853500209DE2 /* All */,
 				EE89AEB625AB0EFB00209DE2 /* Main */,
 				EEE6A7CD259F6F040052B3AE /* HomeView */,
 				EE5A852425A1B171004BC998 /* HomeModal */,
@@ -421,6 +432,7 @@
 				EEE6A7E0259F87000052B3AE /* NutritionView.swift in Sources */,
 				EE89AEC625AB405B00209DE2 /* BurnedCaloriesView.swift in Sources */,
 				EE4DBD9925A6394A00144E9C /* BackGroundRularView.swift in Sources */,
+				EE89AF0025AC854800209DE2 /* ValidationAlertView.swift in Sources */,
 				EE89AEB025A8B1CB00209DE2 /* DishModal.swift in Sources */,
 				EE4DBD9225A36FAC00144E9C /* DataSelectRow.swift in Sources */,
 				EE89AEB925AB0F1A00209DE2 /* BottomTabBar.swift in Sources */,

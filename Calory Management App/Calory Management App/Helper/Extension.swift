@@ -66,6 +66,6 @@ extension CGFloat {
     
     
     static let defaultWidth = UIScreen.screenWidth - 40
-    
     static let textEditorWidth = UIScreen.screenWidth - 120
+    static let alertWidth = UIScreen.screenWidth * 0.7
 }

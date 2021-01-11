@@ -16,6 +16,8 @@ struct NewDataModal: View {
     
     @State var selectedType: DataType? = nil
     
+    @State var showAlert = false
+    
     
     // MARK: - Body
     
@@ -82,7 +84,7 @@ struct NewDataModal: View {
                     
                     // MARK: - Decide Button
                     Button(action: {
-                        dismissModal()
+                        validate()
                     }, label: {
                         Text("決定")
                             .foregroundColor(.white)
@@ -112,6 +114,14 @@ struct NewDataModal: View {
                 
             } //: ZStack
             
+            
+            
+            
+            // MARK: - Alert
+            if showAlert {
+                ValidationAlertView(showAlert: $showAlert, message: "データの種類を入力してください")
+            }
+            
         } //: ZStack
         .opacity(shouldDismissModal ? 0 : 1)
     }
@@ -127,6 +137,18 @@ struct NewDataModal: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             showNewDataModal = false
         }
+    }
+    
+    
+    func validate() {
+        guard selectedType != nil else {
+            return
+                withAnimation(.spring()) {
+                    showAlert = true
+                }
+        }
+        
+        dismissModal()
     }
 }
 

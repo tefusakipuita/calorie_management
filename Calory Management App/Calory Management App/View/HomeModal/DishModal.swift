@@ -18,6 +18,8 @@ struct DishModal: View {
     
     @State var foodText = ""
     
+    @State var showAlert = false
+    
     
     // MARK: - Body
     
@@ -44,7 +46,7 @@ struct DishModal: View {
                     HStack {
                         Text("ごはん名: ")
                         
-                        TextField("", text: $foodText)
+                        TextField("グラタン", text: $foodText)
                             .background(
                                 Color.green1
                                     .frame(height: 1.5)
@@ -136,7 +138,7 @@ struct DishModal: View {
                     
                     // MARK: - Decide Button
                     Button(action: {
-                        dismissModal()
+                        validate()
                     }, label: {
                         Text("決定")
                             .foregroundColor(.white)
@@ -167,6 +169,14 @@ struct DishModal: View {
                 
             } //: ZStack
             
+            
+            
+            
+            // MARK: - Alert
+            if showAlert {
+                ValidationAlertView(showAlert: $showAlert, message: "ごはん名を入力してください")
+            }
+            
         } //: ZStack
         .opacity(shouldDismissModal ? 0 : 1)
         
@@ -183,6 +193,18 @@ struct DishModal: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             showDishModal = false
         }
+    }
+    
+    
+    func validate() {
+        guard foodText != "" else {
+            return
+                withAnimation(.spring()) {
+                    showAlert = true
+                }
+        }
+        
+        dismissModal()
     }
 }
 

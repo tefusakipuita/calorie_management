@@ -20,6 +20,9 @@ struct NewFoodModal: View {
     @State var lipid = ""
     @State var calorie = ""
     
+    @State var showAlert = false
+    @State var alertMessage = ""
+    
     
     // MARK: - Body
     
@@ -80,7 +83,7 @@ struct NewFoodModal: View {
                     
                     // MARK: - Decide Button
                     Button(action: {
-                        dismissModal()
+                        validate()
                     }, label: {
                         Text("決定")
                             .foregroundColor(.white)
@@ -111,6 +114,14 @@ struct NewFoodModal: View {
                 
             } //: ZStack
             
+            
+            
+            
+            // MARK: - Alert
+            if showAlert {
+                ValidationAlertView(showAlert: $showAlert, message: alertMessage)
+            }
+            
         } //: ZStack
         .opacity(shouldDismissModal ? 0 : 1)
         
@@ -127,6 +138,27 @@ struct NewFoodModal: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             showNewFoodModal = false
         }
+    }
+    
+    
+    func validate() {
+        guard foodText != "" else {
+            return
+                withAnimation(.spring()) {
+                    alertMessage = "食材名を入力してください"
+                    showAlert = true
+                }
+        }
+        
+        guard calorie != "" else {
+            return
+                withAnimation(.spring()) {
+                    alertMessage = "カロリーを入力してください"
+                    showAlert = true
+                }
+        }
+        
+        dismissModal()
     }
 }
 

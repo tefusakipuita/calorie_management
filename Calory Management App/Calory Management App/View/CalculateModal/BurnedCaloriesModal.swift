@@ -24,6 +24,9 @@ struct BurnedCaloriesModal: View {
     @State var selectedSexType: SexType? = nil
     @State var selectedActionType: ActionType? = nil
     
+    @State var showAlert = false
+    @State var alertMessage = ""
+    
     
     // MARK: - Body
     
@@ -104,8 +107,7 @@ struct BurnedCaloriesModal: View {
                     
                     // MARK: - Calculate Button
                     Button(action: {
-                        calculateBurnedCalories()
-                        dismissModal()
+                        validate()
                     }, label: {
                         Text("計算する")
                             .foregroundColor(.white)
@@ -136,6 +138,14 @@ struct BurnedCaloriesModal: View {
                 
             } //: ZStack
             
+            
+            
+            
+            // MARK: - Alert
+            if showAlert {
+                ValidationAlertView(showAlert: $showAlert, message: alertMessage)
+            }
+            
         } //: ZStack
         .opacity(shouldDismissModal ? 0 : 1)
         
@@ -152,6 +162,52 @@ struct BurnedCaloriesModal: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             showCaluculateModal = false
         }
+    }
+    
+    
+    func validate() {
+        guard selectedSexType != nil else {
+            return
+                withAnimation(.spring()) {
+                    alertMessage = "性別を選択してください"
+                    showAlert = true
+                }
+        }
+        
+        guard age != "" else {
+            return
+                withAnimation(.spring()) {
+                    alertMessage = "年齢を入力してください"
+                    showAlert = true
+                }
+        }
+        
+        guard height != "" else {
+            return
+                withAnimation(.spring()) {
+                    alertMessage = "身長を入力してください"
+                    showAlert = true
+                }
+        }
+        
+        guard weight != "" else {
+            return
+                withAnimation(.spring()) {
+                    alertMessage = "体重を入力してください"
+                    showAlert = true
+                }
+        }
+        
+        guard selectedActionType != nil else {
+            return
+                withAnimation(.spring()) {
+                    alertMessage = "運動レベルを選択してください"
+                    showAlert = true
+                }
+        }
+        
+        calculateBurnedCalories()
+        dismissModal()
     }
     
     

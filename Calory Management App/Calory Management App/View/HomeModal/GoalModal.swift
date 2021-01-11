@@ -16,6 +16,8 @@ struct GoalModal: View {
     
     @State var goadText = ""
     
+    @State var showAlert = false
+    
     
     // MARK: - Body
     
@@ -45,7 +47,7 @@ struct GoalModal: View {
                     
                     // MARK: - Decide Button
                     Button(action: {
-                        dismissModal()
+                        validate()
                     }, label: {
                         Text("決定")
                             .foregroundColor(.white)
@@ -75,6 +77,14 @@ struct GoalModal: View {
                 
             } //: ZStack
             
+            
+            
+            
+            // MARK: - Alert
+            if showAlert {
+                ValidationAlertView(showAlert: $showAlert, message: "目標を入力してください")
+            }
+            
         } //: ZStack
         .opacity(shouldDismissModal ? 0 : 1)
         
@@ -91,6 +101,18 @@ struct GoalModal: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             showGoalModal = false
         }
+    }
+    
+    
+    func validate() {
+        guard goadText != "" else {
+            return
+                withAnimation(.spring()) {
+                    showAlert = true
+                }
+        }
+        
+        dismissModal()
     }
 }
 
